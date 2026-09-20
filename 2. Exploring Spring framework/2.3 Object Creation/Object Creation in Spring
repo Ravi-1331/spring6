@@ -1,4 +1,4 @@
-# Object Creation in Spring
+# 03 - Object Creation in Spring
 
 ## 📌 About This Project
 
@@ -273,17 +273,3 @@ obj.code();
 **`ApplicationContext` loads the Spring configuration, creates and manages the Beans, and `getBean()` is used to retrieve those objects from the Spring container.**
 
 ---
-
-## 🚀 Next Concept
-
-After understanding Object Creation, the next important Spring concepts are:
-
-* Dependency Injection
-* Constructor Injection
-* Setter Injection
-* `@Component`
-* `@Autowired`
-* Bean Scope
-* Bean Lifecycle
-* Java-based Configuration
-* Spring Boot
