@@ -1,0 +1,27 @@
+### Short Summary
+
+This project demonstrates **Spring Framework dependency management using XML configuration**.
+
+* Created an `Alien` class with a `code()` method.
+* Created `spring.xml` to configure the `Alien` class as a **Spring Bean**.
+* Used `ApplicationContext` to start the Spring container.
+* Used `context.getBean("alien")` to get the object instead of creating it with `new Alien()`.
+* Called the `code()` method through the Spring-managed object.
+
+### Main Use
+
+The main purpose is to understand **IoC (Inversion of Control)** and **Dependency Injection** in Spring.
+
+Instead of:
+
+```java
+Alien obj = new Alien();
+```
+
+Spring creates and manages the object:
+
+```java
+Alien obj = (Alien) context.getBean("alien");
+```
+
+This makes applications **loosely coupled, easier to maintain, and easier to configure**.
