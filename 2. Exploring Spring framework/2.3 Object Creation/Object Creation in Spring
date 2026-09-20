@@ -1,0 +1,289 @@
+# Object Creation in Spring
+
+## 📌 About This Project
+
+This project demonstrates **how Spring creates and manages Java objects (Beans) using the IoC Container and XML configuration**.
+
+The main concept learned here is how `ApplicationContext` creates objects automatically based on the Bean definitions present in `spring.xml`.
+
+---
+
+## 🔑 Main Concept
+
+`ApplicationContext` is the central interface of the **Spring IoC Container**.
+
+It is responsible for:
+
+* Loading the Spring XML configuration file.
+* Creating the Spring container.
+* Creating objects (Beans) defined in the XML.
+* Managing those objects.
+* Providing the objects when requested using `getBean()`.
+
+---
+
+## 🔄 Basic Workflow
+
+### 1. Create the Spring Container
+
+```java
+ApplicationContext context =
+        new ClassPathXmlApplicationContext("spring.xml");
+```
+
+`ClassPathXmlApplicationContext` loads the `spring.xml` file.
+
+Spring reads the `<bean>` definitions and creates the corresponding objects.
+
+---
+
+### 2. Define a Bean in XML
+
+Example:
+
+```xml
+<bean id="alien" class="org.example.Alien">
+</bean>
+```
+
+Here:
+
+* `id="alien"` → Unique name of the Bean.
+* `class="org.example.Alien"` → Class whose object Spring will create.
+
+When the Spring container starts, Spring creates an `Alien` object.
+
+---
+
+### 3. Retrieve the Object
+
+```java
+Alien obj = (Alien) context.getBean("alien");
+```
+
+`getBean("alien")` searches the Spring container for the Bean whose ID is `alien`.
+
+Spring returns the object that it created.
+
+---
+
+### 4. Use the Object
+
+After getting the object:
+
+```java
+obj.code();
+```
+
+We can call its methods just like a normal Java object.
+
+---
+
+# 🧠 Important Concept
+
+Normally in Java:
+
+```java
+Alien obj = new Alien();
+```
+
+The developer creates the object.
+
+With Spring:
+
+```java
+Alien obj = (Alien) context.getBean("alien");
+```
+
+Spring creates and manages the object.
+
+### Without Spring
+
+```text
+Developer
+    ↓
+new Alien()
+    ↓
+Object created
+```
+
+### With Spring
+
+```text
+spring.xml
+    ↓
+ApplicationContext
+    ↓
+Spring IoC Container
+    ↓
+Alien Object Created
+    ↓
+getBean("alien")
+    ↓
+Object Reference
+```
+
+---
+
+# 🔥 Multiple Bean Creation
+
+Spring can create multiple objects from the same class.
+
+Example:
+
+```xml
+<beans>
+
+    <bean id="alien1" class="org.example.Alien">
+    </bean>
+
+    <bean id="alien2" class="org.example.Alien">
+    </bean>
+
+    <bean id="lap" class="org.example.Laptop">
+    </bean>
+
+</beans>
+```
+
+When the `ApplicationContext` is initialized:
+
+```text
+alien1 → Alien Object
+alien2 → Alien Object
+lap    → Laptop Object
+```
+
+Therefore:
+
+* `alien1` → One `Alien` object
+* `alien2` → Another `Alien` object
+* `lap` → One `Laptop` object
+
+`alien1` and `alien2` are separate Bean instances.
+
+---
+
+## 📊 Example
+
+```java
+Alien obj1 = (Alien) context.getBean("alien1");
+
+Alien obj2 = (Alien) context.getBean("alien2");
+```
+
+Conceptually:
+
+```text
+alien1 ─────→ Alien Object 1
+
+alien2 ─────→ Alien Object 2
+```
+
+Both objects belong to the same `Alien` class but are different instances.
+
+---
+
+# ⚙️ When Are Objects Created?
+
+When this code executes:
+
+```java
+ApplicationContext context =
+        new ClassPathXmlApplicationContext("spring.xml");
+```
+
+Spring reads the XML and creates the Beans defined there.
+
+For example:
+
+```xml
+<bean id="alien1" class="org.example.Alien"/>
+<bean id="alien2" class="org.example.Alien"/>
+<bean id="lap" class="org.example.Laptop"/>
+```
+
+Spring creates:
+
+```text
+2 Alien objects
+1 Laptop object
+```
+
+---
+
+# 🧠 What I Learned From This Project
+
+1. What `ApplicationContext` is.
+2. What the Spring IoC Container does.
+3. How Spring creates objects automatically.
+4. How XML is used to define Beans.
+5. How `ClassPathXmlApplicationContext` loads `spring.xml`.
+6. How `getBean()` retrieves an object.
+7. How multiple Beans can be created from the same class.
+8. The difference between manually creating objects with `new` and Spring-managed objects.
+9. Basic understanding of Bean lifecycle and object management.
+
+---
+
+# 🎯 Why This Is Useful
+
+In real-world Spring applications, there can be hundreds of classes and objects.
+
+Instead of manually creating and managing every object:
+
+```java
+new Alien();
+new Laptop();
+new Student();
+new Employee();
+```
+
+Spring can manage these objects through its IoC Container.
+
+This helps achieve:
+
+* Loose coupling
+* Centralized object management
+* Dependency Injection
+* Easier maintenance
+* Better testability
+* Cleaner application architecture
+
+---
+
+# 📝 Quick Revision
+
+Remember these three lines:
+
+```java
+// 1. Create Spring Container
+ApplicationContext context =
+        new ClassPathXmlApplicationContext("spring.xml");
+
+// 2. Get Bean
+Alien obj = (Alien) context.getBean("alien");
+
+// 3. Use Object
+obj.code();
+```
+
+### In one sentence:
+
+**`ApplicationContext` loads the Spring configuration, creates and manages the Beans, and `getBean()` is used to retrieve those objects from the Spring container.**
+
+---
+
+## 🚀 Next Concept
+
+After understanding Object Creation, the next important Spring concepts are:
+
+* Dependency Injection
+* Constructor Injection
+* Setter Injection
+* `@Component`
+* `@Autowired`
+* Bean Scope
+* Bean Lifecycle
+* Java-based Configuration
+* Spring Boot
