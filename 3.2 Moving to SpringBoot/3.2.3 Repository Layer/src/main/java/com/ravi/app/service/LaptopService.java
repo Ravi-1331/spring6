@@ -1,6 +1,6 @@
 package com.ravi.app.service;
 
-import com.ravi.app.LaptopRepository;
+import com.ravi.app.repo.LaptopRepository;
 import com.ravi.app.model.Laptop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
