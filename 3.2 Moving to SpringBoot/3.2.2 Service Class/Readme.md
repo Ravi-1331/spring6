@@ -129,7 +129,41 @@ method called
 A common Spring Boot structure is:
 
 ```text
-<img width="374" height="442" alt="image" src="https://github.com/user-attachments/assets/d9ac60f4-08a2-4466-9b3c-d3091f70fddd" />
+3.2.3 Repository Layer [SpringBootFirst]
+│
+├── .idea
+├── .mvn
+│
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com.ravi.app
+│   │   │       │
+│   │   │       ├── model
+│   │   │       │   ├── Alien.java
+│   │   │       │   ├── Computer.java
+│   │   │       │   ├── Desktop.java
+│   │   │       │   └── Laptop.java
+│   │   │       │
+│   │   │       ├── repo
+│   │   │       │   └── LaptopRepository.java
+│   │   │       │
+│   │   │       ├── service
+│   │   │       │
+│   │   │       └── SpringBootFirstApplication.java
+│   │   │
+│   │   └── resources
+│   │
+│   └── test
+│
+├── target
+├── .gitattributes
+├── .gitignore
+├── HELP.md
+├── mvnw
+├── mvnw.cmd
+└── pom.xml
+
 
 ```
 
